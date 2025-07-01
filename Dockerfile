@@ -1,11 +1,12 @@
-FROM golang:1.23-alpine
+FROM golang:1.24.4-alpine3.22
 
 RUN mkdir /app
 
 ADD . /app
 
-WORKDIR /app
-
+WORKDIR /app    
+RUN go mod download
 RUN go build -o main .
 
-CMD ["/app/main"]
+EXPOSE 8080
+CMD ["./main"]
